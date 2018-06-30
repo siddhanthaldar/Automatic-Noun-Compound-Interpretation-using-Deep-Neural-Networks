@@ -30,8 +30,6 @@ num_data = len(word1)
 embedding_dim = embedding_matrix.shape[1]
 num_label = len(label_to_idx) - 1
 
-# print(num_data)
-
 #look up for each word
 look_up_1 = np.zeros((len(word1), embedding_dim))
 look_up_2 = np.zeros((len(word2), embedding_dim))
@@ -45,13 +43,7 @@ for i in range(len(train_label)):
 	idx = int(label_to_idx[train_label[i]] - 1)
 	labels_one_hot[i][idx] = 1
 
-# print(labels_one_hot.shape)
-
-
 #***************** Model definition ************************
-
-# **********************TensorFlow*****************************
-
 #Necessary Functions
 def weight_variable(shape):
 	return tf.Variable(tf.truncated_normal(shape, stddev = 0.1))
@@ -66,13 +58,6 @@ X1 = tf.placeholder(tf.float32, shape = ([None, embedding_dim]))
 X2 = tf.placeholder(tf.float32, shape = ([None, embedding_dim]))
 Y = tf.placeholder(tf.float32, shape = ([None, num_label]))  #labels
 
-# print(look_up_1.shape)
-word_1 = tf.Variable(tf.constant(look_up_1))
-word_2 = tf.Variable(tf.constant(look_up_2))  #tf.get_variable('word_2', initializer = tf.constant(look_up_2))
-# y = tf.Variable(tf.constant(labels_one_hot))
-# label_model = tf.Variable(tf.constant())
-# print(word_1)
-
 #hidden layer
 W_h1 = weight_variable((embedding_dim, embedding_dim))
 b_h1 = bias_variable([1, embedding_dim])
@@ -85,32 +70,23 @@ h = tf.nn.relu(mul_mat(X1,W_h1, b_h1) + mul_mat(X2,W_h2, b_h2))
 W_out = weight_variable([embedding_dim, num_label])
 b_out = bias_variable([1, num_label])
 
-output = tf.nn.softmax(mul_mat(h,W_out,b_out))
-
+output = mul_mat(h,W_out,b_out)   
+	
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = Y, logits = output))
-train_step = tf.train.AdadeltaOptimizer().minimize(cost)
+train_step = tf.train.AdamOptimizer(1e-3).minimize(cost)
 
 correct_prediction = tf.equal(tf.argmax(output,1), tf.argmax(Y,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-predicted = tf.argmax(output,1) + 1
-
-# num_iterations = 400000
-# recording_interval = 10000
-# batch_size = 200
-# num_batch = int(num_data/batch_size)
-# batch_num = 0   #batch number presently considered
-
-
-
+predicted = tf.argmax(output,1)
 
 init = tf.global_variables_initializer()
 
 with tf.Session() as sess:
 	#***************Restore weights ***************
 	sess.run(init)
-	saver= tf.train.Saver([W_h1,b_h1,W_h2,b_h2, W_out, b_out])
-	saver.restore(sess, "/home/sid/virtual_env/nlp/proj/Compound-Noun-Interpretation/wgts_glove300d.cpkt")
+	saver= tf.train.Saver()
+	saver.restore(sess, "/home/sid/virtual_env/nlp/proj/mod_data_scripts/weights.cpkt")
 	print("Restored")
 
 	#*************** Predict *********************
