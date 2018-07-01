@@ -7,6 +7,12 @@ The code is divided into several modules and has a version that uses fine tuning
 ## Code Description
 The python scripts are present in the ***scripts*** folder. The scripts contain :
 
+- **read.py** : for reading the train, test and validation data
+- **embedding.py** - prepares the embedding matrix for different word embeddings
+- **train.py** : train the data for a chosen word embedding type. The instruction for choosing different word embedding is given below.
+- **test.py** : test accuracy for a chosen word embedding type.
+- **train_with_f.py** : train the data with fine tuning of the embedding matrix for a chosen word embedding type. The instruction for choosing different word embedding is given below. 
+- **test_with_f.py** : test accuracy for the data trained using fine tuning for a chosen word embedding type.
 
 
 
