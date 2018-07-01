@@ -15,11 +15,6 @@ def look_up_table(embedding_matrix, word, embedding_dim):  #embedding_matrix : n
 
 	return look_up	
 
-def softmax(output):
-	output = np.exp(output)
-	output = output / np.sum(output, axis = 1)
-
-	return output
 
 
 word_to_idx, idx_to_word,label_to_idx,idx_to_label = read.read_data()
