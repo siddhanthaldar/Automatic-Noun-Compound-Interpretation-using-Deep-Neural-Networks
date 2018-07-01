@@ -1,7 +1,7 @@
 # Compound-Noun-Interpretation
 This is an TensorFlow implementation of the paper on [Automatic Noun Compound Interpretation using
 Deep Neural Networks and Word Embeddings](http://www.sfs.uni-tuebingen.de/~cdima/papers/IWCS201522.pdf).
-This paper focuses on identifying the semantic relation that holds between the constituents of a compound. This implementation gives results that are almost identical to that given in the paper. The code is divided into several modules and has a version that uses fine tuning and one that does not. The instructions to run the package is given further.
+This paper focuses on identifying the semantic relation that holds between the constituents of a compound noun. This implementation gives results that are almost identical to that given in the paper. The code is divided into several modules and has a version that uses fine tuning and one that does not. The instructions to run the package is given further.
 
 **Note :** The repository also contains the Tratz and Hovy dataset referred to in the paper.
 
