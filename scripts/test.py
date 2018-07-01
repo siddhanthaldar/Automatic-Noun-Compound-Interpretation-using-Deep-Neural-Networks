@@ -81,7 +81,7 @@ with tf.Session() as sess:
 	#***************Restore weights ***************
 	sess.run(init)
 	saver= tf.train.Saver()
-	saver.restore(sess, "/home/sid/virtual_env/nlp/proj/mod_data_scripts/weights.cpkt")
+	saver.restore(sess, "/home/sid/repo/git_repo/Compound-Noun-Interpretation/scripts/weights.cpkt")#/home/sid/virtual_env/nlp/proj/mod_data_scripts/weights.cpkt")
 	print("Restored")
 
 	#*************** Predict *********************
