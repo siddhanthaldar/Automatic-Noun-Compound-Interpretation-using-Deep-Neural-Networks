@@ -14,6 +14,9 @@ The python scripts are present in the ***scripts*** folder. The scripts contain 
 - **train_with_f.py** : train the data with fine tuning of the embedding matrix for a chosen word embedding type. The instruction for choosing different word embedding is given below. 
 - **test_with_f.py** : test accuracy for the data trained using fine tuning for a chosen word embedding type.
 
+## Instructions
+- **Train without fine tuning** : Modify the script ***train.py***. Set the type of word embedding by changing the function name in line 22 of the given script. The function names for different embedding types can be seen from ***embedding.py***. The same must be done to ***test.py*** for obtaining accuracy on the test set.
+- **Train with fine tuning** : Modify the script ***train_with_f.py***. Set the type of word embedding by changing the function name in line 20 of the given script. The function names for different embedding types can be seen from ***embedding.py***. The same must be done to ***test_with_f.py*** for obtaining accuracy on the test set.
 
 
 
