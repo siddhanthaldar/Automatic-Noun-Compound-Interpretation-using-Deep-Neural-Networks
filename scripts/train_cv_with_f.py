@@ -19,24 +19,9 @@ word_to_idx, idx_to_word,label_to_idx,idx_to_label = read.read_data()
 word1, word2 ,label = read.read_cross_val_data(idx_to_word, idx_to_label)
 embedding_matrix = embedding.glove_embedding(idx_to_word)
 
-# num_data = len(word1)
 embedding_dim = embedding_matrix.shape[1]
 num_label = len(label_to_idx) - 1
 
-# #Generate word indices
-# word1_idx = word_idx_matrix(word1)
-# word2_idx = word_idx_matrix(word2)
-
-# #Convert to int type
-# word1_idx = word1_idx.astype(int)
-# word2_idx = word2_idx.astype(int)
-
-# #one hot representation of labels
-# labels_one_hot = np.zeros((len(train_label),num_label))
-# # print(num_label)	
-# for i in range(len(train_label)):
-# 	idx = int(label_to_idx[train_label[i]] - 1)
-# 	labels_one_hot[i][idx] = 1
 
 # ********************* Model *************************
 #Necessary Functions
@@ -120,7 +105,6 @@ with tf.Session() as sess:
 
 		#one hot representation of labels
 		labels_one_hot_train = np.zeros((len(label_train),num_label))
-		# print(num_label)	
 		for i in range(len(label_train)):
 			idx = int(label_to_idx[label_train[i]] - 1)
 			labels_one_hot_train[i][idx] = 1
@@ -136,7 +120,6 @@ with tf.Session() as sess:
 
 		#one hot representation of labels
 		labels_one_hot_val = np.zeros((len(label_val),num_label))
-		# print(num_label)	
 		for i in range(len(label_val)):
 			idx = int(label_to_idx[label_val[i]] - 1)
 			labels_one_hot_val[i][idx] = 1
@@ -155,10 +138,6 @@ with tf.Session() as sess:
 
 				sess.run(train_step, feed_dict = {X1 : x1_batch, X2 : x2_batch, Y: y })
 
-				# if(i % recording_interval == 0):
-				# 	print(accuracy.eval(feed_dict={X1 : x1_batch, X2 : x2_batch, Y : y}))
-
-				# if(i == num_iterations - 1):
 				print('accuracy = ', accuracy.eval(feed_dict={X1: word1_val_idx, X2: word2_val_idx, Y: labels_one_hot_val}))# sess.run(accuracy, feed_dict={X1: look_up_1, X2: look_up_2, Y: labels_one_hot}))			
 
 	print("Training Completed\n")
