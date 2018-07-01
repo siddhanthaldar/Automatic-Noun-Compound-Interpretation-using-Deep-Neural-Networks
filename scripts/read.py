@@ -1,9 +1,9 @@
 def read_data():
 	#Read labels(or interpretations) and the words
-	with open('/home/sid/virtual_env/nlp/proj/dataset/tratz_hovy_full/tratz_and_hovy_full_relations.txt', "r") as label_list:
+	with open('../tratz_hovy_full/tratz_and_hovy_full_relations.txt', "r") as label_list:
 	    label = label_list.read().split('\n')	
 
-	with open('/home/sid/virtual_env/nlp/proj/dataset/tratz_hovy_full/tratz_and_hovy_full.dict', "r") as word_list:
+	with open('../tratz_hovy_full/tratz_and_hovy_full.dict', "r") as word_list:
 	    word = word_list.read().split('\n')
 
 	# Keep labels and words in the form of dictionaries
@@ -27,7 +27,7 @@ def read_data():
 	return word_to_idx, idx_to_word,label_to_idx,idx_to_label
 
 def read_train_data(words,labels):   #in the form (idx_to_word, idx_to_label)
-	with open('/home/sid/virtual_env/nlp/proj/dataset/tratz_hovy_full/dataset/tratz_and_hovy_full_train.dataset', "r") as row_data:
+	with open('../tratz_hovy_full/dataset/tratz_and_hovy_full_train.dataset', "r") as row_data:
 		row = row_data.read().split('\n')
 
 	word_1 = []
@@ -49,7 +49,7 @@ def read_train_data(words,labels):   #in the form (idx_to_word, idx_to_label)
 	return word_1, word_2, label
 
 def read_test_data(words,labels):  # in the form (idx_to_word, idx_to_label)
-	with open('/home/sid/virtual_env/nlp/proj/dataset/tratz_hovy_full/dataset/tratz_and_hovy_full_test.dataset', "r") as row_data:
+	with open('../tratz_hovy_full/dataset/tratz_and_hovy_full_test.dataset', "r") as row_data:
 		row = row_data.read().split('\n')
 
 	word_1 = []
@@ -71,7 +71,7 @@ def read_test_data(words,labels):  # in the form (idx_to_word, idx_to_label)
 	return word_1, word_2, label	
 
 def read_val_data(words,labels):   # in the form (idx_to_word, idx_to_label)
-	with open('/home/sid/virtual_env/nlp/proj/dataset/tratz_hovy_full/dataset/tratz_and_hovy_full_dev.dataset', "r") as row_data:
+	with open('../tratz_hovy_full/dataset/tratz_and_hovy_full_dev.dataset', "r") as row_data:
 		row = row_data.read().split('\n')
 
 	word_1 = []
@@ -99,7 +99,7 @@ def read_cross_val_data(words,labels):   # in the form (idx_to_word, idx_to_labe
 
 	for x in range(10):
 
-		with open('/home/sid/virtual_env/nlp/proj/dataset/tratz_hovy_full/dataset/10-fold-train_dev/tratz_and_hovy_full_train_and_dev_cv' + str(x+1) + '.dataset', "r") as row_data:
+		with open('../tratz_hovy_full/dataset/10-fold-train_dev/tratz_and_hovy_full_train_and_dev_cv' + str(x+1) + '.dataset', "r") as row_data:
 			row = row_data.read().split('\n')
 
 		word_1 = []
